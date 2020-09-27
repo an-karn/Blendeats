@@ -1,2 +1,3 @@
-# DBWS-Project_2
-You can use this repository for submission
+**Project 2**
+
+Group Members: *Ishwor Giri* , *Aarshika Singh* and *Ankit Karn*
