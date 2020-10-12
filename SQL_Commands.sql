@@ -1,5 +1,4 @@
 
-
 CREATE TABLE member
 (
     uid INTEGER AUTO_INCREMENT,
@@ -21,6 +20,7 @@ CREATE TABLE Admin
 
     
 );
+
 
 CREATE TABLE Client
 (
@@ -66,6 +66,7 @@ CREATE TABLE Food
 CREATE TABLE Packaged_Food
 (
     fid INTEGER NOT NULL,
+    bestbefore INTEGER NOT NULL,
     PRIMARY KEY(fid),
     FOREIGN KEY(fid) REFERENCES Food(fid) ON DELETE CASCADE  ON UPDATE CASCADE
 );
@@ -73,6 +74,7 @@ CREATE TABLE Packaged_Food
 CREATE TABLE Cooked_Food
 (
     fid INTEGER NOT NULL,
+    ingredients CHAR(50),
     PRIMARY KEY(fid),
     FOREIGN KEY(fid) REFERENCES Food(fid) ON DELETE CASCADE  ON UPDATE CASCADE
 );
@@ -108,12 +110,13 @@ CREATE TABLE n_veg_n_halal
 -- member & Food Relation
 
 
+
 CREATE TABLE offers
 (
     uid INTEGER,
     fid INTEGER,
     oid INTEGER UNIQUE,
-    PRIMARY KEY(fid),
+    PRIMARY KEY(uid,fid,oid),
     FOREIGN KEY(uid) REFERENCES member(uid) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY(fid) REFERENCES Food(fid) ON DELETE CASCADE  ON UPDATE CASCADE
 );
@@ -129,4 +132,3 @@ CREATE TABLE Requests
     FOREIGN KEY(uid) REFERENCES member(uid) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY(fid) REFERENCES Food(fid) ON DELETE CASCADE  ON UPDATE CASCADE
 );
-
