@@ -1,0 +1,123 @@
+MariaDB [group2]> --  Get Foods which is offered with Food Provider Name and the price is less than 25.
+MariaDB [group2]> SELECT M.Fname, F.Title, O.fid
+    -> FROM member M, offers O , Food F
+    -> WHERE M.uid=O.uid AND O.fid=F.fid AND F.price<25;
++-----------+---------+-----+
+| Fname     | Title   | fid |
++-----------+---------+-----+
+| Ankit     | Momo    |   1 |
+| Ankit     | Noodles |   5 |
+| Alex      | Burger  |   2 |
+| Alex      | Pasta   |   6 |
+| Shubhaman | Biryani |   3 |
+| Pat       | Pizza   |   4 |
+| Sam       | Noodles |   5 |
++-----------+---------+-----+
+7 rows in set (0.000 sec)
+
+MariaDB [group2]>
+MariaDB [group2]> -- Get Clients who are from country India
+MariaDB [group2]> SELECT M.Fname , M.country
+    -> FROM member M, Client C
+    -> WHERE M.uid=C.uid AND M.country="India";
++-----------+---------+
+| Fname     | country |
++-----------+---------+
+| Shubhaman | India   |
++-----------+---------+
+1 row in set (0.000 sec)
+
+MariaDB [group2]>
+MariaDB [group2]> --Select all the packaged food, which is going to expire in next three months
+MariaDB [group2]> SELECT  F.Title, P.bestbefore
+    -> FROM Packaged_Food P, Food F
+    -> WHERE F.fid=P.fid AND P.bestbefore < 3;
++-------+------------+
+| Title | bestbefore |
++-------+------------+
+| Pasta |          2 |
++-------+------------+
+1 row in set (0.000 sec)
+
+MariaDB [group2]>
+MariaDB [group2]> --Select all the food being requested by more than one people
+MariaDB [group2]> SELECT F.Title, R.fid ,Count(R.fid) as requests
+    -> FROM Food F, Requests R
+    -> WHERE F.fid = R.fid
+    -> GROUP BY R.fid
+    -> HAVING COUNT(*) > 1;
++-------+-----+----------+
+| Title | fid | requests |
++-------+-----+----------+
+| Momo  |   1 |        3 |
++-------+-----+----------+
+1 row in set (0.000 sec)
+
+MariaDB [group2]>
+MariaDB [group2]> --Select the average price.
+MariaDB [group2]> SELECT AVG(F.price)
+    -> FROM Food F, offers O
+    -> WHERE F.fid = O.fid;
++--------------+
+| AVG(F.price) |
++--------------+
+|       4.5714 |
++--------------+
+1 row in set (0.000 sec)
+
+MariaDB [group2]>
+MariaDB [group2]> --Group the food according to price
+MariaDB [group2]> SELECT F.price
+    -> FROM Food F
+    -> GROUP BY(F.price);
++-------+
+| price |
++-------+
+|     1 |
+|     2 |
+|     3 |
+|    20 |
+|    29 |
++-------+
+5 rows in set (0.000 sec)
+
+MariaDB [group2]>
+MariaDB [group2]> --Select countries with more than one person who are registered in our website
+MariaDB [group2]> SELECT Count(M.uid) as usercount,  M.country
+    -> FROM member M
+    -> GROUP BY M.country
+    -> HAVING usercount>1;
++-----------+---------+
+| usercount | country |
++-----------+---------+
+|         2 | India   |
+|         3 | Nepal   |
++-----------+---------+
+2 rows in set (0.000 sec)
+
+MariaDB [group2]>
+MariaDB [group2]> -- Select all the clients who are also admins
+MariaDB [group2]> SELECT M.Fname
+    -> FROM member M, Client C, Admin A
+    -> WHERE M.uid = C.uid AND M.uid= A.uid AND C.uid = A.uid;
++--------+
+| Fname  |
++--------+
+| Ishwor |
++--------+
+1 row in set (0.000 sec)
+
+MariaDB [group2]>
+MariaDB [group2]> -- Select all admins who can read, write and delete in the website
+MariaDB [group2]> SELECT M.Fname, M.Lname
+    -> FROM member M, Admin A
+    -> WHERE M.uid = A.uid AND A.permission_type = ('Read,Edit,Delete');
++----------+-------+
+| Fname    | Lname |
++----------+-------+
+| Ishwor   | Giri  |
+| Aarshika | Singh |
++----------+-------+
+2 rows in set (0.000 sec)
+
+MariaDB [group2]>
