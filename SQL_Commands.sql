@@ -6,6 +6,7 @@ CREATE TABLE member
     Lname CHAR(20) NOT NULL,
     bio CHAR(50),
     profilepic LONGBLOB,
+    number INTEGER,
     Country CHAR(20) NOT NULL,
     PRIMARY KEY(uid)
     
@@ -56,7 +57,7 @@ CREATE TABLE Food
     fid INTEGER NOT NULL,
     Title CHAR(20) NOT NULL,
     description CHAR(50),
-    image LONGBLOB NOT NULL,
+    image LONGBLOB,
     price INTEGER NULL,
     PRIMARY KEY(fid)
 );
@@ -127,7 +128,6 @@ CREATE TABLE Requests
     uid INTEGER,
     fid INTEGER,
     rid INTEGER,
-    pay INTEGER,
     PRIMARY KEY(rid, uid, fid),
     FOREIGN KEY(uid) REFERENCES member(uid) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY(fid) REFERENCES Food(fid) ON DELETE CASCADE  ON UPDATE CASCADE
