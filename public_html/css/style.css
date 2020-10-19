@@ -121,7 +121,13 @@ hr {
   overflow: hidden;
   background-color: #f4511e;
 }
+.logo{
+  float: center;
+  display: block;
+  height: 4em;
+  width: 8em;
 
+}
 
 /* Style the topnav links */
 .navi a {
