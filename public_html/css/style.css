@@ -1,5 +1,8 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans);
 
+
+
+
 * {
   box-sizing: border-box;
 }
@@ -121,13 +124,7 @@ hr {
   overflow: hidden;
   background-color: #f4511e;
 }
-.logo{
-  float: center;
-  display: block;
-  height: 4em;
-  width: 8em;
 
-}
 
 /* Style the topnav links */
 .navi a {
@@ -140,7 +137,6 @@ hr {
   font-family: "Open-Sans", sans-serif;
 }
 
-/* Change color on hover */
 
 .navi a {
   line-height:2.4em;
@@ -152,7 +148,6 @@ hr {
   color: black;
   
 }
-
 
 
 .logo {
@@ -181,6 +176,7 @@ hr {
   background-color: #fff;
   
 }
+
 .footer {
   overflow: hidden;
   width: 100%;
@@ -190,10 +186,11 @@ hr {
 
 
 .center {
-  display: grid;
+  display: flex;
   justify-content: center;
+  margin: 0 auto;
+  flex-wrap:wrap;
   gap: 1.5em;
-  grid-auto-flow: column;
 }
 .row{
   padding: 10vh;
@@ -218,6 +215,7 @@ hr {
   color: white;
   padding: 0.1em;
 }
+
 .searchTerm {
   width: 50%;
   border: 3px solid #000000;
@@ -232,22 +230,18 @@ hr {
   color: #000000;
 }
 .searchButton {
-  position: relative;
   height: 50px;
-  border: 1px solid #000000 ;
+  border: 3px solid #000000 ;
   background:#f4511e;
-  padding: 5px;
+  margin-left: -6px;
   text-align: center;
   color: #f2f2f2;
+  border-left: none;
   border-radius: 0 5px 5px 0;
   cursor: pointer;
-  font-size: 20px;
-  padding: 20px;
-  font-size: 30px;
-  width: 30px;
+  width: 50px;
   text-align: center;
   text-decoration: none;
-  margin: 5px 2px;
 }
 
 
