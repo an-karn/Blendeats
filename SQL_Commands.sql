@@ -14,7 +14,14 @@ CREATE TABLE member
 
 CREATE TABLE Admin
 (
-    uid INTEGER,
+    
+    uid INTEGER AUTO_INCREMENT,
+    Fname CHAR(20) NOT NULL,
+    Lname CHAR(20) NOT NULL,
+    bio CHAR(50),
+    profilepic LONGBLOB,
+    number INTEGER,
+    Country CHAR(20) NOT NULL,
     permission_type SET("Read", "Edit", "Delete"),
     PRIMARY KEY(uid),
     FOREIGN KEY(uid) REFERENCES member(uid) ON DELETE CASCADE ON UPDATE CASCADE
@@ -25,7 +32,14 @@ CREATE TABLE Admin
 
 CREATE TABLE Client
 (
-    uid INTEGER,
+    
+    uid INTEGER AUTO_INCREMENT,
+    Fname CHAR(20) NOT NULL,
+    Lname CHAR(20) NOT NULL,
+    bio CHAR(50),
+    profilepic LONGBLOB,
+    number INTEGER,
+    Country CHAR(20) NOT NULL,
     preferred_payment SET("Cash", "Bank-Transfer", "PayPal"),
     PRIMARY KEY(uid),
     FOREIGN KEY(uid) REFERENCES member(uid) ON DELETE CASCADE ON UPDATE CASCADE
@@ -67,6 +81,10 @@ CREATE TABLE Food
 CREATE TABLE Packaged_Food
 (
     fid INTEGER NOT NULL,
+    Title CHAR(20) NOT NULL,
+    description CHAR(50),
+    image LONGBLOB,
+    price INTEGER NULL,
     bestbefore INTEGER NOT NULL,
     PRIMARY KEY(fid),
     FOREIGN KEY(fid) REFERENCES Food(fid) ON DELETE CASCADE  ON UPDATE CASCADE
@@ -75,6 +93,10 @@ CREATE TABLE Packaged_Food
 CREATE TABLE Cooked_Food
 (
     fid INTEGER NOT NULL,
+    Title CHAR(20) NOT NULL,
+    description CHAR(50),
+    image LONGBLOB,
+    price INTEGER NULL,
     ingredients CHAR(50),
     PRIMARY KEY(fid),
     FOREIGN KEY(fid) REFERENCES Food(fid) ON DELETE CASCADE  ON UPDATE CASCADE
@@ -83,6 +105,10 @@ CREATE TABLE Cooked_Food
 CREATE TABLE Vegan
 (
     fid INTEGER NOT NULL,
+    Title CHAR(20) NOT NULL,
+    description CHAR(50),
+    image LONGBLOB,
+    price INTEGER NULL,
     PRIMARY KEY(fid),
     FOREIGN KEY(fid) REFERENCES Food(fid) ON DELETE CASCADE  ON UPDATE CASCADE
 );
@@ -90,6 +116,10 @@ CREATE TABLE Vegan
 CREATE TABLE Vegetarian
 (
     fid INTEGER NOT NULL,
+    Title CHAR(20) NOT NULL,
+    description CHAR(50),
+    image LONGBLOB,
+    price INTEGER NULL,
     PRIMARY KEY(fid),
     FOREIGN KEY(fid) REFERENCES Food(fid) ON DELETE CASCADE  ON UPDATE CASCADE
 );
@@ -97,6 +127,10 @@ CREATE TABLE Vegetarian
 CREATE TABLE n_veg_halal
 (
     fid INTEGER NOT NULL,
+    Title CHAR(20) NOT NULL,
+    description CHAR(50),
+    image LONGBLOB,
+    price INTEGER NULL,
     PRIMARY KEY(fid),
     FOREIGN KEY(fid) REFERENCES Food(fid) ON DELETE CASCADE  ON UPDATE CASCADE
 );
@@ -104,6 +138,10 @@ CREATE TABLE n_veg_halal
 CREATE TABLE n_veg_n_halal
 (
     fid INTEGER NOT NULL,
+    Title CHAR(20) NOT NULL,
+    description CHAR(50),
+    image LONGBLOB,
+    price INTEGER NULL,
     PRIMARY KEY(fid),
     FOREIGN KEY(fid) REFERENCES Food(fid) ON DELETE CASCADE  ON UPDATE CASCADE
 );
