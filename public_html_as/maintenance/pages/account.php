@@ -3,10 +3,10 @@ $email = $_POST['email'];
 $password = $_POST['password'];
 $rpassword = $_POST['rpassword'];
 
-$servername = "localhost";
+$servername = "10.72.1.14
 $username = "aasingh";
 $password = "";
-$db = "MariaDB";
+$db = "group2";
 
 $conn -= new mysqli($servername, $username, $password, $db);
 
