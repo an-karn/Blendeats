@@ -7,10 +7,10 @@ $contact = $_POST['contact'];
 $permission = $_POST['permission'];
 $file = $_POST['file'];
 
-$servername = "localhost";
+$servername = "10.72.1.14
 $username = "aasingh";
 $password = "";
-$db = "MariaDB";
+$db = "group2";
 
 $conn -= new mysqli($servername, $username, $password, $db);
 
