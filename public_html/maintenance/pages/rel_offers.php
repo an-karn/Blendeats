@@ -8,8 +8,8 @@
 
 
     <div class="container mt-5">
-        <h1>Packed Food </h1>
-        <p>Submit date of expiry for Packed Food</p>
+        <h1>Offer Food </h1>
+        <p>Submit your offer</p>
 
         <form action="rel_offers.php" method="POST">
             select user
@@ -21,7 +21,7 @@
             <input class="btn btn-primary" type="submit" value="Submit">
         </form>
 
-        <p>By filling this form, you will add offer food.</p>
+        <p>By filling this form, you will be offering food.</p>
 
     </div>
 

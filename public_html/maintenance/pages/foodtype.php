@@ -8,8 +8,8 @@
 
 
     <div class="container mt-5">
-        <h1>List Your Food</h1>
-        <p>Submit date of expiry for Packed Food</p>
+        <h1>What is this food?</h1>
+        <p>Submit food type</p>
 
         <form action="packedfood.php" method="POST">
 
@@ -30,7 +30,7 @@
             <input class="btn btn-primary" type="submit" value="Submit">
         </form>
 
-        <p>By filling this form, you will add your food to packed-food.</p>
+        <p>By filling this form, you will add your food to food type entity.</p>
 
     </div>
 
