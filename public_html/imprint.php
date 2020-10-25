@@ -4,124 +4,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <title>Blend EATS </title>
 </head>
 
+
+
 <body>
-    <div class="navi">
-        <div class="nav-content">
 
-            <nav>
-                <a class="logo" href="/">
-                    <img src="img/logo.png" width="100px"> </a>
+Adding
+<?php include("nav.php")
+    ?>
 
-                <a href="#home">Home</a>
-                <a href="#offers">Our Offers</a>
-                <a href="mailto: aa.singh@jacobs-university.de" target="_blank">Contact Us</a>
-                <a href="imprint.html" target="_blank">Imprint</a>
-                <a href="login.html" target="_blank">Login</a>
-            </nav>
+
+    <div class="container-fluid ">
+        <div class="center">
+            <div class="page">
+                <h1>Contacts:</h1>
+                <p>Aarshika Singh: aa.singh(at)jacobs-university.de</p>
+                <p>Ankit Karn: an.karn(at)jacobs-university.de</p>
+                <p>Ishwor Giri: i.giri(at)jacobs-university.de</p>
+                <h1>Disclaimer</h1>
+                <p>
+                    This website is student lab work and does not necessarily reflect Jacobs University Bremen opinions.
+                    Jacobs University Bremen does not endorse this site, nor is it checked by Jacobs University
+                    Bremen regularly, nor is it part of the official Jacobs University Bremen web presence.
+                </p>
+                For each external link existing on this website, we initially have checked that the target page
+                does not contain contents which is illegal wrt. German jurisdiction. However, as we have no influence on
+                such contents, this may change without our notice. Therefore we deny any responsibility for the websites
+                referenced through our external links from here.
+                <p>
+                    No information conflicting with GDPR is stored in the server
+                </p>
+            </div>
         </div>
+    
+
     </div>
-    <div class="main-section">
-
-
-
-        <div class="main-content">
-
-            <h1> Welcome to <span class="bold">BlendEats</span> </h1>
-
-
-
-            <div class="searchbar">
-                <input type="text" class="searchTerm" placeholder="What are you looking for?">
-                <button type="submit" class="searchButton"> GO
-                </button>
-            </div>
-
-            <div class="container" id="popularcountry">
-
-
-                <h2> Browse by Popular Countries </h2>
-
-                <div class="center">
-
-                    <span class="c-button">Nepal</span>
-                    <span class="c-button">America</span>
-                    <span class="c-button">Italy</span>
-                    <span class="c-button">Germany</span>
-                    <button class="c-button"> Browse Countries</button>
-                </div>
-            </div>
-
-            <div class="container" id="foodoptions">
-                <h2> Food Options </h2>
-
-                <div class="">
-                    <span class="fopt-button b-veg">Vegan</span>
-                    <span class="fopt-button b-vegt">Vegeterian</span>
-                    <span class="fopt-button b-nveg">Non Veg</span>
-                    <span class="fopt-button b-halal">Halal</span>
-                </div>
-
-
-
-
-            </div>
-
-            <div class="container " id="popularfood">
-
-                <h2>Find Popular Foods</h2>
-
-                <div class="flex-box">
-
-
-                    <article class="card">
-                        <img class="card__img" src="img/Biryani.jpeg">
-                        <h3 class="card__title">Chicken Biryani</h3>
-                        <div class="card__subtitle">
-                            <span> by Member1 </span><span class="c-button">India</span>
-                            <span class="price">15</span> </div>
-
-                    </article>
-                    <article class="card">
-                        <img class="card__img" src="img/Pasta.jpg">
-                        <h3 class="card__title">Pasta</h3>
-                        <div class="card__subtitle">
-                            <span> by Member1 </span><span class="c-button">Italy</span>
-                            <span class="price">15</span> </div>
-                    </article>
-
-
-                    </article>
-                    <article class="card">
-                        <img class="card__img" src="img/burger.jpg">
-                        <h3 class="card__title">Spicy Burger</h3>
-                        <div class="card__subtitle">
-                            <span> by Member1 </span><span class="c-button">USA</span>
-                            <span class="price">20</span> </div>
-
-                    </article>
-
-
-                    </article>
-                    <article class="card">
-                        <img class="card__img" src="img/Schnitzel.jpg">
-                        <h3 class="card__title">Schnitzel</h3>
-                        <div class="card__subtitle">
-                            <span> by Member1 </span><span class="c-button">Germany</span>
-                            <span class="price">30</span> </div>
-                    </article>
-
-                </div>
-            </div>
-
-        </div>
-    </div>
-
-    <div class="footer container">
-        <div class="footer-main ">
+    <div class="footer">
+        <div class="footer-main container-fluid">
             <div class="footer-details">
                 <div class="footer-about">
                     <h3>About us </h3>
@@ -205,7 +129,8 @@
 
 
 
-
+    <script src="assets/js/jq.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
 
 </body>
 

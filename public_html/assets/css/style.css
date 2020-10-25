@@ -1,7 +1,9 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans);
 
-* {
-  box-sizing: border-box;
+
+
+:root{
+  --def-color: #f4511e
 }
 
 /* width */
@@ -24,19 +26,16 @@
   background: #555;
 }
 
-body {
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  background: #fafafa;
-  font-family: "Open-Sans", sans-serif;
-}
 
 /* hr {
   width: 90%;
   margin: 2vh 0;
   text-align: left;
 } */
+
+
+
+/* Food Option Buttons */
 
 .fopt-button {
   border: rgba(249, 88, 19, 0.906) 0.3em solid;
@@ -75,45 +74,21 @@ body {
   color: #fff;
 }
 
-.navi {
-  overflow: hidden;
-  background-color: #f4511e;
-}
 
 /* Style the topnav links */
-.navi a {
-  float: left;
-  display: block;
-  color: black;
-  text-align: center;
-  padding: 14px 16px;
-  text-transform: uppercase;
-  text-decoration: none;
-  font-family: "Open-Sans", sans-serif;
+
+.bg-def{
+  background-color: var(--def-color);
 }
 
-.navi a {
-  line-height: 2.4em;
-  height: 4em;
-  color: white;
-}
-.navi a:hover {
-  background-color: white;
-  color: black;
+.nav-link {
+  color: #fff !important;
 }
 
-.logo {
-  float: left;
-}
 
-.navilinks {
-  float: left;
-}
 
-.main-content {
-  width: 100%;
-  overflow: hidden;
-  background-color: rgb(250, 250, 250);
+
+.centerr {
   text-align: center;
 }
 
@@ -121,6 +96,17 @@ body {
   padding: 2em;
   margin: 2em 7em;
   background-color: #fff;
+}
+.mt-links{
+  transition: ease-out 0.2s;
+
+}
+
+
+.mt-links:hover{
+  transition: ease-in 0.2s;
+  background-color: var(--blue);
+  color:#fff
 }
 
 .searchTerm {
@@ -139,7 +125,7 @@ body {
 .searchButton {
   height: 50px;
   border: 3px solid #000000;
-  background: #f4511e;
+  background: var(--def-color);
   margin-left: -6px;
   text-align: center;
   color: #f2f2f2;
@@ -157,7 +143,7 @@ body {
   justify-content: center;
   margin: 0 auto;
   flex-wrap: wrap;
-  gap: 1.5em;
+  gap: 1em;
 }
 
 .card {
@@ -174,27 +160,27 @@ body {
 .card:hover {
   box-shadow: 3px 3px 5px 6px #ccc;
 }
-.card__img {
+.card-img-top{
   width: 100%;
   height: 250px;
   object-fit: cover;
   border-radius: 5px 5px 0 0;
 }
-.card__title {
-  font-size: 1.5rem;
-  font-family: sans-serif;
-  padding: 0.5rem 1rem;
-  margin: 0;
-  text-align: left;
-}
-.card__subtitle {
-  font-family: sans-serif;
-  color: rgb(47, 47, 47);
-  margin: 0;
-  padding: 0 0.5rem 0.5rem 1rem;
-  text-align: left;
+
+.card-body{
+  padding:0.8rem !important;
 }
 
+.card-title {
+  margin: 0;
+  text-align: left !important;
+;
+}
+
+.card-text {
+  padding: 0 0.5rem 0.5rem 1rem !important;
+  text-align: left;
+}
 .price {
   float: right;
   padding: 0.5rem;
@@ -205,7 +191,7 @@ body {
 }
 
 .c-button {
-  background-color: #f4511e;
+  background-color: var(--def-color);
   border: none;
   color: white;
   padding: 0.5rem;
@@ -294,7 +280,7 @@ body {
 
 .forms-link a {
   padding: 5px;
-  background: #f4511e;
+  background: var(--def-color);
   border-left: solid black 5px;
   text-decoration: none;
   color: white;
@@ -305,7 +291,7 @@ body {
 .forms-link a:hover {
   padding: 5px;
   background: #7b2b13;
-  border-left: solid #f4511e 5px;
+  border-left: solid var(--def-color) 5px;
   text-decoration: none;
   color: white;
 }
