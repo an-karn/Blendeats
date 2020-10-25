@@ -65,8 +65,8 @@
         {
             print "First Name, Last Name, Country, Payment Method and Contact are needed";
         }
-        $sql = "insert into Client(Fname,Lname,bio,profilepic,number,country,preferred_payment) 
-                values('$fname','$lname','$bio','$file','$contact','$country','$payment')"
+        $sql = "insert into Client(preferred_payment) 
+                values('$payment')"
                 
         $sql = "insert into member(Fname,Lname,bio,profilepic,number,country) 
                 values('$fname','$lname','$bio','$file','$contact','$country')"
