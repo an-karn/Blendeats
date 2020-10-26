@@ -72,7 +72,7 @@ include("../header.php")?>
     $conn->close(); 
     ?>
 <br>
-<a class ="btn btn-primary" href = "/maintenance">Maintenance Page</a>
+<a class ="btn btn-primary" href = "../">Maintenance Page</a>
 
 </div>
 
