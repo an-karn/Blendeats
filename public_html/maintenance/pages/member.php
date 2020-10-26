@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<?php include("../../header.php") ?>
+<?php include("../header.php") ?>
 
 <body>
     <?php include('../../nav.php') ?>
@@ -9,7 +9,7 @@
     <div class="container mt-5">
         <p>You need to fill this form to register as a member.</p>
 
-        <form action="/maintenance/submit/s_member.php" method="POST">
+        <form action="../submit/s_member.php" method="POST">
             <div class="form-group">
 
                 <label for="fname">First name:</label>

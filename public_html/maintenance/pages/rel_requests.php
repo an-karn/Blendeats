@@ -2,7 +2,7 @@
 <html lang="en">
 <?php 
 $page_title = 'Request - BlendEats';
-include("../../header.php") ?>
+include("../header.php") ?>
 
 <body>
     <?php include('../../nav.php') ?>
@@ -32,7 +32,7 @@ include("../../header.php") ?>
         <p>Submit your request</p>
 
 
-        <form action="/maintenance/submit/s_rel_requests.php" method="POST">
+        <form action="../submit/s_rel_requests.php" method="POST">
 
             <div class="form-group">
 

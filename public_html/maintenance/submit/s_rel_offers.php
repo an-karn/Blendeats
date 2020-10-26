@@ -3,7 +3,7 @@
 
 <?php 
 $age_title="Submit Page";
-include("../../header.php")?>
+include("../header.php")?>
 <body>
 
 <div class="container mt-5">
@@ -13,7 +13,7 @@ include("../../header.php")?>
     $dbpass = "6QOIHm";
     $dbname = "group2";
 
-      //default sucesss if error change color
+      //default success if error change color
       echo'<div class="alert alert-success" id="result"role="alert">';
 
     $conn = new mysqli($servername, $username, $dbpass, $dbname);

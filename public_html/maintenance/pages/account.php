@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<?php include("../../header.php") ?>
+<?php include("../header.php") ?>
 
 <body>
     <?php include('../../nav.php') ?>
@@ -10,7 +10,7 @@
     <div class="container mt-5">
         <h1>Create Your Account</h1>
         <p>Please fill this form to create an Account</p>
-        <form action="/maintenance/submit/s_account.php" method="POST">
+        <form action="../submit/s_account.php" method="POST">
             <div class="form-group">
                 <label for="email">Email Id:</label>
                 <input type="email" class="form-control" id="email" name="email" placeholder="Email id">

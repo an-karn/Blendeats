@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<?php include("../../header.php") ?>
+<?php include("../header.php") ?>
 
 <body>
     <?php include('../../nav.php') ?>
@@ -27,7 +27,7 @@
     <div class="container mt-5">
         <p>You need to fill this form to register as a Admin.</p>
 
-        <form action="/maintenance/submit/s_admin.php" method="POST">
+        <form action="../submit/s_admin.php" method="POST">
             <div class="form-group">
 
                 <label for="chooseuser">Select Member</label><br>
@@ -64,21 +64,19 @@
 
                 <label for="payment">Choose Payment Method</label><br>
 
-                <select id="payment" class="form-control" name="payment">
+                <!-- <select id="payment" class="form-control" name="payment">
                 <option value="" selected disabled >Choose Payment Method</option>' ;
 
                     <option value="Cash">Cash</option>
                     <option value="Bank-Transfer">Bank Transfer</option>
                     <option value="PayPal">PayPal</option>
-                </select>
+                </select> -->
             </div>
             <input class="btn btn-primary" type="submit" value="Submit">
 
         </form>
 
-
-
-        <p>By filling this form, you will be registered as a Admin and Client(Default).</p>
+        <p>By filling this form, you will be registered as a Admin.</p>
 
     </div>
 

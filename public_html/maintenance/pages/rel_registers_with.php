@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<?php include("../../header.php") ?>
+<?php include("../header.php") ?>
 
 <body>
     <?php include('../../nav.php') ?>
@@ -31,7 +31,7 @@
         <h1>Link Member to account</h1>
         <p>Submit your details</p>
 
-        <form action="/maintenance/submit/s_rel_registers_with.php" method="POST">
+        <form action="../submit/s_rel_registers_with.php" method="POST">
 
             <div class="form-group">
                 <label for="chooseuser">Select User </label>

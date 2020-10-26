@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<?php include("../../header.php") ?>
+<?php include("../header.php") ?>
 
 <body>
     <?php include('../../nav.php') ?>
@@ -27,7 +27,7 @@
     <div class="container mt-5">
         <p>You need to fill this form to register as a Client.</p>
 
-        <form action="/maintenance/submit/s_client.php" method="POST">
+        <form action="../submit/s_client.php" method="POST">
             <div class="form-group">
 
                 <label for="chooseuser">Select Member</label><br>

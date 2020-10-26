@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<?php include("../../header.php") ?>
+<?php include("../header.php") ?>
 
 <body>
     <?php include('../../nav.php') ?>
@@ -10,7 +10,7 @@
     <div class="container mt-5">
         <h1>What are you selling ???</h1>
         <p>You need to fill this form to list your food item</p>
-        <form action="/maintenance/submit/s_food.php" method="POST">
+        <form action="../submit/s_food.php" method="POST">
 
             <div class="form-group">
                 <label for="title">Title:</label>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<?php include("../../header.php") ?>
+<?php include("../header.php") ?>
 
 <body>
     <?php include('../../nav.php') ?>
@@ -29,7 +29,7 @@
         <h1>What is this food?</h1>
         <p>Submit food type</p>
 
-        <form action="/maintenance/submit/s_foodtype.php" method="POST">
+        <form action="../submit/s_foodtype.php" method="POST">
 
             <label for="choosefood">Select Member</label><br>
 

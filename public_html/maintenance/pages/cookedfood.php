@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<?php include("../../header.php") ?>
+<?php include("../header.php") ?>
 
 <body>
     <?php include('../../nav.php') ?>
@@ -29,7 +29,7 @@
         <h1>Cooked Food </h1>
         <p>Submit your ingredients for cooked food</p>
 
-        <form action="/maintenance/submit/s_cookedfood.php" method="POST">
+        <form action="../submit/s_cookedfood.php" method="POST">
 
             <div class="form-group">
 

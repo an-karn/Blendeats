@@ -9,20 +9,20 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="/~igiri/">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
                     <a href="#offers" class="nav-link">Our Offers</a>
                 </li>
                 <li class="nav-item">
-                    <a href="/maintenance" class="nav-link">Maintenance</a>
+                    <a href="http://clabsql.clamv.jacobs-university.de/~igiri/maintenance" class="nav-link">Maintenance</a>
                 </li>
 
                 <li class="nav-item">
                     <a href="mailto: aa.singh@jacobs-university.de" class="nav-link" target="_blank">Contact Us</a>
                 </li>
                 <li class="nav-item">
-                    <a href="/imprint.php" class="nav-link" target="_blank">Imprint</a>
+                    <a href="http://clabsql.clamv.jacobs-university.de/~igiri/imprint.php" class="nav-link" target="_blank">Imprint</a>
                 </li>
 
             </ul>

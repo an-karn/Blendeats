@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
-<?php
-$page_title = 'Maintenance - BlendEats';
-$pgDesc = 'BlendEats Maintenance Page';
-$keyWords = 'food,culture,world,food project';
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
 
-include('../header.php');
-?>
+    <title><?php echo "Maintenance"?></title>
 
+
+</head>
 
 <body>
 
@@ -23,21 +25,21 @@ include('../header.php');
             <div class="col-sm">
                 <h3>Entities</h3>
                 <div class="list-group">
-                    <a href="/maintenance/pages/member.php" class="list-group-item mt-links list-group-item-action">
+                    <a href="pages/member.php" class="list-group-item mt-links list-group-item-action">
                         Sign Up Member </a>
-                    <a href="/maintenance/pages/account.php" class="list-group-item mt-links list-group-item-action">
+                    <a href="pages/account.php" class="list-group-item mt-links list-group-item-action">
                         Create Account</a>
-                    <a href="/maintenance/pages/admin.php" class="list-group-item mt-links list-group-item-action">
+                    <a href="pages/admin.php" class="list-group-item mt-links list-group-item-action">
                         Add To Admin</a>
-                        <a href="/maintenance/pages/client.php" class="list-group-item mt-links list-group-item-action">
+                        <a href="pages/client.php" class="list-group-item mt-links list-group-item-action">
                         Add To Client</a>
-                    <a href="/maintenance/pages/food.php" class="list-group-item mt-links list-group-item-action">
+                    <a href="pages/food.php" class="list-group-item mt-links list-group-item-action">
                         Create Food </a>
-                    <a href="/maintenance/pages/packedfood.php" class="list-group-item mt-links list-group-item-action">
+                    <a href="pages/packedfood.php" class="list-group-item mt-links list-group-item-action">
                         Add to Packed Food</a>
-                    <a href="/maintenance/pages/cookedfood.php" class="list-group-item mt-links list-group-item-action">
+                    <a href="pages/cookedfood.php" class="list-group-item mt-links list-group-item-action">
                         Add to Cooked Food</a>
-                    <a href="/maintenance/pages/foodtype.php" class="list-group-item mt-links list-group-item-action">
+                    <a href="pages/foodtype.php" class="list-group-item mt-links list-group-item-action">
                         Define Food Type ( Veg / Nveg )</a>
                 </div>
             </div>
@@ -45,11 +47,11 @@ include('../header.php');
                 <h3>Relations</h3>
 
                 <div class="list-group">
-                    <a href="/maintenance/pages/rel_offers.php" class="list-group-item mt-links list-group-item-action">
+                    <a href="pages/rel_offers.php" class="list-group-item mt-links list-group-item-action">
                         Offer Food  </a>
-                    <a href="/maintenance/pages/rel_requests.php" class="list-group-item mt-links list-group-item-action">
+                    <a href="pages/rel_requests.php" class="list-group-item mt-links list-group-item-action">
                         Request Food</a>
-                    <a href="/maintenance/pages/rel_registers_with.php" class="list-group-item mt-links list-group-item-action">
+                    <a href="pages/rel_registers_with.php" class="list-group-item mt-links list-group-item-action">
                         Link Member to Account</a>
                 </div>
             </div>

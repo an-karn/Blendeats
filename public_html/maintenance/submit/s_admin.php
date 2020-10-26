@@ -3,7 +3,7 @@
 
 <?php 
 $age_title="Submit Page";
-include("../../header.php")?>
+include("../header.php")?>
 <body>
 
 <div class="container mt-5">
@@ -25,7 +25,7 @@ include("../../header.php")?>
 
     $user = $_POST['chooseuser'];
     $permission_post = $_POST['permission'];
-    $payment_post = $_POST['payment'];
+    // $payment_post = $_POST['payment'];
 
 
     if (empty($user) || empty($permission_post)) {
@@ -33,9 +33,10 @@ include("../../header.php")?>
         print "No field should be empty";
     } else {
         $sql = "INSERT INTO admin(uid,permission_type) VALUES ($user,'$permission_post') ;
+        
         ";
         if ($conn->query($sql) === TRUE) {
-            echo "New record created successfully";
+            echo "New record created successfully ( ADMIN )";
             $success=TRUE;
         } else {
             echo "Error: " . $sql . "<br>" . $conn->error;
