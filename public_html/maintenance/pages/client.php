@@ -7,27 +7,59 @@
     <?php include('../../nav.php') ?>
 
 
+    <?php
+    $servername = "10.72.1.14";
+    $username = "group2";
+    $dbpass = "6QOIHm";
+    $dbname = "group2";
+
+
+    $conn = new mysqli($servername, $username, $dbpass, $dbname);
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+
+    $sql = "SELECT uid, fname FROM member";
+    $result = $conn->query($sql);
+    ?>
+
     <div class="container mt-5">
         <p>You need to fill this form to register as a Client.</p>
 
-            <form action="member.php" method="POST">
+        <form action="/maintenance/submit/s_client.php" method="POST">
             <div class="form-group">
 
                 <label for="chooseuser">Select Member</label><br>
-                <input class="form-control" type="text" id="fname" name="fname" placeholder="First Name">
-                </div>
+                <?php
+                if ($result->num_rows > 0) {
+                    echo '<select id="chooseuser" class="form-control" name="chooseuser">';
+                    echo '  <option value="" selected disabled >Choose User</option>
+                    ';
+                    // output data of each row
+                    while ($row = $result->fetch_assoc()) {
+                        echo '<option value=' . $row["uid"] . '>' . $row["fname"] . '</option>';
+                    }
 
-                <div class="form-group">
+                    echo '</select>';
+                } else {
+                    echo "No User Found";
+                }
+                ?> </div>
+
+            <div class="form-group">
 
                 <label for="payment">Choose Payment Method</label><br>
                 <select id="payment" class="form-control" name="payment">
+                <option value="" selected disabled >Choose Payment Method</option>' ;
+
                     <option value="Cash">Cash</option>
-                    <option value="Bank">Bank Transfer</option>
+                    <option value="Bank-Transfer">Bank Transfer</option>
                     <option value="PayPal">PayPal</option>
                 </select>
-                </div>
+            </div>
 
-                <input class="btn btn-primary" type="submit" value="Submit">
+            <input class="btn btn-primary" type="submit" value="Submit">
 
         </form>
 
@@ -37,7 +69,9 @@
     </div>
 
 
-    <?php include('../../footer.php') ?>
+    <?php $conn->close();
+
+    include('../../footer.php') ?>
 
 </body>
 

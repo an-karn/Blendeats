@@ -10,7 +10,7 @@
     <div class="container mt-5">
         <h1>What are you selling ???</h1>
         <p>You need to fill this form to list your food item</p>
-        <form action="food.php" method="POST">
+        <form action="/maintenance/submit/s_food.php" method="POST">
 
             <div class="form-group">
                 <label for="title">Title:</label>
@@ -24,15 +24,15 @@
                 <label for="price">Price:</label>
                 <input class="form-control" type="number" id="price" name="price" placeholder="Price">
             </div>
-            
+
             <div class="form-group">
                 <label for="file">Picture:</label>
                 <input class="form-control-file" type="file" name="file" id="file">
             </div>
-                <input class="btn btn-primary" type="submit" value="Submit">
+            <input class="btn btn-primary" type="submit" value="Submit">
         </form>
 
-        <p>By filling this form, you will be registered as a Client.</p>
+        <p>By filling this form, you can sell food.</p>
 
     </div>
 

@@ -74,5 +74,5 @@
 
 
 
-    <script src="assets/js/jq.js"></script>
-    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="/assets/js/jq.js"></script>
+    <script src="/assets/js/bootstrap.min.js"></script>
