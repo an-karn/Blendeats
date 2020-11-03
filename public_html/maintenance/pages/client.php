@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<?php include("../header.php") ?>
+<?php include('../../header.php') ?>
 
 <body>
     <?php include('../../nav.php') ?>
@@ -51,7 +51,7 @@
 
                 <label for="payment">Choose Payment Method</label><br>
                 <select id="payment" class="form-control" name="payment">
-                <option value="" selected disabled >Choose Payment Method</option>' ;
+                    <option value="" selected disabled>Choose Payment Method</option>' ;
 
                     <option value="Cash">Cash</option>
                     <option value="Bank-Transfer">Bank Transfer</option>
@@ -69,10 +69,10 @@
     </div>
 
 
-    <?php $conn->close();
-
-    include('../../footer.php') ?>
-
+    <?php 
+        $conn->close();
+        include('../../footer.php') ?>
+        
 </body>
 
 </html>

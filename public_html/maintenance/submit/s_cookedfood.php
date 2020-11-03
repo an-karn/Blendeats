@@ -3,7 +3,7 @@
 
 <?php 
 $age_title="Submit Page";
-include("../header.php")?>
+include("../../header.php")?>
 <body>
 
 <div class="container mt-5">
