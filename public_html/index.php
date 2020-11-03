@@ -20,6 +20,9 @@ include ('header.php');
             <h1> Welcome to <span class="bold">BlendEats</span> </h1>
 
 
+            <div class="links">
+                
+            </div>
 
             <div class="searchbar">
                 <input type="text" class="searchTerm" placeholder="What are you looking for?">
@@ -42,7 +45,7 @@ include ('header.php');
                 <span class="c-button">America</span>
                 <span class="c-button">Italy</span>
                 <span class="c-button">Germany</span>
-                <button class="c-button"> Browse Countries</button>
+                <a class="c-button"  href="/search/s_country.php"> Browse Countries</></a>
             </div>
         </div>
 

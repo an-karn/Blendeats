@@ -78,7 +78,7 @@
 /* Style the topnav links */
 
 .bg-def{
-  background-color: var(--def-color);
+  background-color: var(--def-color) !important;
 }
 
 .nav-link {

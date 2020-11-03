@@ -1,15 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../assets/css/style.css">
-
-    <title><?php echo "Maintenance"?></title>
-
-
-</head>
+<?php
+    include("../header.php");
+?>
 
 <body>
 
@@ -20,12 +13,12 @@
         <h2>Welcome to Maintenance Page</h2>
         <p> Here you will find all the form links to submit and fill all the details</p>
 
-
+    <form action="main/admin.php" method="POST">
         <div class="row">
             <div class="col-sm">
                 <h3>Entities</h3>
                 <div class="list-group">
-                    <a href="pages/member.php" class="list-group-item mt-links list-group-item-action">
+                    <a href="./pages/member.php" class="list-group-item mt-links list-group-item-action">
                         Sign Up Member </a>
                     <a href="pages/account.php" class="list-group-item mt-links list-group-item-action">
                         Create Account</a>
