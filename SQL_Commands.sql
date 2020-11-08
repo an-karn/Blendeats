@@ -39,6 +39,7 @@ CREATE TABLE account
     loginid INTEGER AUTO_INCREMENT NOT NULL ,
     user CHAR(30) UNIQUE NOT NULL,
     password CHAR(30) NOT NULL,
+    email CHAR(50) UNIQUE NOT NULL,
     PRIMARY KEY(loginid)
     
 );
