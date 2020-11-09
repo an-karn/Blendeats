@@ -8,6 +8,7 @@ CREATE TABLE member
     profilepic LONGBLOB,
     contact VARCHAR(15) UNIQUE,
     country CHAR(50) NOT NULL,
+    email CHAR(50) UNIQUE NOT NULL,
     PRIMARY KEY(uid)
     
 );
@@ -36,8 +37,9 @@ CREATE TABLE client
 CREATE TABLE account
 (
     loginid INTEGER AUTO_INCREMENT NOT NULL ,
-    email CHAR(30) UNIQUE NOT NULL,
+    user CHAR(30) UNIQUE NOT NULL,
     password CHAR(30) NOT NULL,
+    email CHAR(50) UNIQUE NOT NULL,
     PRIMARY KEY(loginid)
     
 );
