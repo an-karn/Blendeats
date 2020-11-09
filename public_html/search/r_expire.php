@@ -1,21 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-
 <?php
 $age_title="Result Page";
 include("../header.php")?>
 <body>
 
 <div class="container mt-5">
-<?php
- $servername = "10.72.1.14";
- $username = "group2";
- $dbpass = "6QOIHm";
- $dbname = "group2";
-    $conn = new mysqli($servername, $username, $dbpass, $dbname);
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
+<?php include("../conn.php");
+    //$conn->open();
 
     $bestbefore= $_GET['bestbefore'];
 

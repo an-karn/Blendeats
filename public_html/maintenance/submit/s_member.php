@@ -1,29 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-
 <?php 
 $age_title="Submit Page";
 include("../../header.php")?>
 <body>
 
 <div class="container mt-5">
-<?php
-    $servername = "10.72.1.14";
-    $username = "group2";
-    $dbpass = "6QOIHm";
-    $dbname = "group2";
+<?php include("../../conn.php");
 
   //default success if error change color
   echo'<div class="alert alert-success" id="result"role="alert">';
-
-    $conn = new mysqli($servername, $username, $dbpass, $dbname);
-    if ($conn->connect_error) {
-        $success = FALSE;
-        die("Connection failed: " . $conn->connect_error);
-    }
-
     $fname_post = $_POST['fname'];
     $lname_post = $_POST['lname'];
+    $email = $_POST['email'];
     $bio_post = $_POST['bio'];
     $profile_pic =$_POST['file'];
     $number_post = $_POST['contact'];
@@ -36,12 +23,21 @@ include("../../header.php")?>
 
 
 
-    if (empty($fname_post) || empty($lname_post) || empty($country_post)) {
+    if (empty($fname_post) || empty($lname_post) || empty($email) || empty($country_post)) {
         $success = FALSE;
         print "Name and Country are Mandatory";
-    } else {
-        $sql = "INSERT INTO member(fname, lname, bio, profilepic, contact , country) 
-        VALUES ('$fname_post','$lname_post',$bio_post,$profile_pic, $number_post,'$country_post') ;
+    } 
+    else if(strlen($bio_post) > 250)
+    {
+        print "Bio should not exceed 250 characters";
+    }
+    else if(strlen($number_post) > 15)
+    {
+        print "Contact should not exceed 15 characters";
+    }
+    else {
+        $sql = "INSERT INTO member(fname, lname,email, bio, profilepic, contact , country) 
+        VALUES ('$fname_post','$lname_post','$email',$bio_post,$profile_pic, $number_post,'$country_post') ;
     ";
         if ($conn->query($sql) === TRUE) {
             $success = TRUE;

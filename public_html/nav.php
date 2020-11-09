@@ -18,9 +18,6 @@ $home = "/" ?>
                 <a class="nav-link" href="<?php echo $home  ?> "> Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a href="<?php echo $home.'maintenance/' ?>" class="nav-link">Our Offers</a>
-            </li>
-            <li class="nav-item">
                 <a href="<?php echo $home.'maintenance/' ?> " class="nav-link">Maintenance</a>
             </li>
             <li class="nav-item">
@@ -28,13 +25,25 @@ $home = "/" ?>
             </li>
 
             <li class="nav-item">
-                <a href="mailto: aa.singh@jacobs-university.de" class="nav-link" target="_blank">Contact Us</a>
+                <a href="mailto: aa.singh(at)jacobs-university.de" class="nav-link" target="_blank">Contact Us</a>
             </li>
             <li class="nav-item">
                 <a href="<?php echo $home.'imprint.php' ?>" class="nav-link" target="_blank">Imprint</a>
             </li>
 
         </ul>
+<?php
+if(isset($_SESSION['user']))
+{
+    echo "<a href='$home"."login/logout.php' class='btn btn-outline-light my-2 my-sm-0' > Logout </a> ";
+    echo "<a href='$home"."login/signup.php' class='btn btn-outline-light my-2 my-sm-0' > Sign Up </a> ";
+
+}else{
+    echo "<a href='$home"."login/login.php' class='btn btn-outline-light my-2 my-sm-0' > Login </a> ";
+    echo "<a href='$home"."login/signup.php' class='btn btn-outline-light my-2 my-sm-0' > Sign Up </a> ";
+}
+?>
+
 
     </div>
 </nav>

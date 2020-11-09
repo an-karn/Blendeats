@@ -1,7 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
 <?php
-    include("../header.php");
+    require("../header.php");
 ?>
 
 <body>
@@ -19,9 +17,7 @@
                 <h3>Entities</h3>
                 <div class="list-group">
                     <a href="./pages/member.php" class="list-group-item mt-links list-group-item-action">
-                        Sign Up Member </a>
-                    <a href="pages/account.php" class="list-group-item mt-links list-group-item-action">
-                        Create Account</a>
+                        Your Profile</a>
                     <a href="pages/admin.php" class="list-group-item mt-links list-group-item-action">
                         Add To Admin</a>
                         <a href="pages/client.php" class="list-group-item mt-links list-group-item-action">

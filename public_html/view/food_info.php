@@ -1,6 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-
 <?php 
 $age_title="Details Page";
 include("../header.php")?>
@@ -8,15 +5,8 @@ include("../header.php")?>
 <?php include("../nav.php")?>
 <div class="container mt-5">
 <?php
-    $servername = "10.72.1.14";
-    $username = "group2";
-    $dbpass = "6QOIHm";
-    $dbname = "group2";
-
-    $conn = new mysqli($servername, $username, $dbpass, $dbname);
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    } 
+   include("../conn.php");
+   
     $fid = $_GET['fid'];
 
     $sql = "SELECT * FROM food WHERE fid = $fid ;";

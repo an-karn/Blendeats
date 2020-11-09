@@ -1,7 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php
+session_start();
 
-<?php include("../header.php") ?>
+
+include("../header.php") ?>
 
 <body>
     <?php include('../nav.php') ?>

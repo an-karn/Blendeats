@@ -1,26 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php
+session_start();
 
-<?php include("../../header.php") ?>
-
+// Check, if username session is NOT set then this page will jump to login page
+if (!isset($_SESSION['user'])) {
+header('Location: ../../login/login.php');
+}
+include("../../header.php") ?>
 <body>
     <?php include('../../nav.php') ?>
 
 
-    <?php
-    $servername = "10.72.1.14";
-    $username = "group2";
-    $dbpass = "6QOIHm";
-    $dbname = "group2";
-
-
-    $conn = new mysqli($servername, $username, $dbpass, $dbname);
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
+    <?php include("../../conn.php");
 
     $sql_user = "SELECT uid, fname, lname FROM member";
-    $sql_account = "SELECT loginid, email FROM account";
+    $sql_account = "SELECT loginid, user FROM account";
     $user_result = $conn->query($sql_user);
     $account_result = $conn->query($sql_account);
     ?>
@@ -62,11 +55,11 @@
                 if ($account_result->num_rows > 0) {
                     echo '<select id="chooseaccount" class="form-control" name="chooseaccount">';
 
-                    echo '  <option value="" selected disabled >Choose account</option>';
+                    echo '  <option value="" selected disabled >Choose Username</option>';
 
                     // output data of each row
                     while ($row = $account_result->fetch_assoc()) {
-                        echo '<option value=' . $row["loginid"] . '>' . $row["email"] . '</option>';
+                        echo '<option value=' . $row["loginid"] . '>' . $row["user"] . '</option>';
                     }
 
                     echo '</select>';

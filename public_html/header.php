@@ -1,8 +1,12 @@
 <?php 
-
+session_start();
 // for clamv subdirectory issue
 // replace with  /~username/ for clamv upload
 $home = "/" ?>
+
+<!DOCTYPE html>
+<html lang="en">
+
 
 <head>
     <meta charset="UTF-8">

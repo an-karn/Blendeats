@@ -1,7 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php
+session_start();
 
-<?php include("../../header.php") ?>
+// Check, if username session is NOT set then this page will jump to login page
+if (!isset($_SESSION['user'])) {
+header('Location: ../../login/login.php');
+}
+include("../../header.php") ?>
 
 <body>
     <?php include('../../nav.php') ?>
@@ -20,6 +24,11 @@
 
                 <label for="lname">Last name:</label>
                 <input class="form-control" type="text" id="lname" name="lname" placeholder="Last Name">
+            </div>
+            <div class="form-group">
+
+                <label for="email">Email:</label>
+                <input class="form-control" type="text" id="email" name="email" placeholder="Email id">
             </div>
 
             <div class="form-group">

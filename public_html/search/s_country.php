@@ -1,8 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-
-
 <?php
+session_start();
+
+
 $page_title = 'Search by Country - BlendEats';
 include('../header.php');
 ?>

@@ -1,7 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-
-
 <?php
 $page_title = 'BlendEats';
 $pgDesc = 'BlendEats Homepage';

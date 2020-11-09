@@ -1,6 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-
 <?php 
 $age_title="Submit Page";
 include("../../header.php")?>
@@ -8,17 +5,11 @@ include("../../header.php")?>
 
 <div class="container mt-5">
  <?php
-    $servername = "10.72.1.14";
-    $username = "group2";
-    $dbpass = "6QOIHm";
-    $dbname = "group2";
+   include("../../conn.php");
 
-
-    $conn = new mysqli($servername, $username, $dbpass, $dbname);
-    if ($conn->connect_error) {
-        $success = FALSE;
-        die("Connection failed: " . $conn->connect_error);
-    }
+ 
+  //default success if error change color
+  echo'<div class="alert alert-success" id="result"role="alert">';
 
     $uid_post = $_POST['chooseuser'];
     $loginid_post = $_POST['chooseaccount'];

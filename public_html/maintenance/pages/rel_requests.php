@@ -1,24 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<?php 
+<?php
+session_start();
+
+// Check, if username session is NOT set then this page will jump to login page
+if (!isset($_SESSION['user'])) {
+header('Location: ../../login/login.php');
+}
 $page_title = 'Request - BlendEats';
 include("../../header.php") ?>
 
 <body>
     <?php include('../../nav.php') ?>
 
+    <?php include("../../conn.php");
 
-    <?php
-    $servername = "10.72.1.14";
-    $username = "group2";
-    $dbpass = "6QOIHm";
-    $dbname = "group2";
-
-
-    $conn = new mysqli($servername, $username, $dbpass, $dbname);
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
 
     $sql_user = "SELECT uid, fname, lname FROM member";
     $sql_food = "SELECT fid, title FROM food";

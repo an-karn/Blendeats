@@ -1,6 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-
 <?php
 $age_title = "Result Page";
 include("../header.php") ?>
@@ -9,21 +6,13 @@ include("../header.php") ?>
 
     <div class="container mt-5">
         <?php
-        $servername = "10.72.1.14";
-        $username = "group2";
-        $dbpass = "6QOIHm";
-        $dbname = "group2";
-
-        $conn = new mysqli($servername, $username, $dbpass, $dbname);
-        if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
-        }
+        include("../conn.php");
 
         $pricerange = $_GET['pricerange'];
         if (empty($pricerange)) {
             print "Price range is Mandatory";
-        // } elseif ($pricerange > 5) {
-        //     print "Price range Not Defined";
+            // } elseif ($pricerange > 5) {
+            //     print "Price range Not Defined";
         } else {
 
             switch ($pricerange) {
@@ -39,7 +28,7 @@ include("../header.php") ?>
                 case 4:
                     $pricerange = "price BETWEEN 15 AND 20";
                     break;
-                default: 
+                default:
                     $pricerange = "price >=21";
             }
             $sql = "SELECT title, price ,fid  FROM food WHERE $pricerange;";

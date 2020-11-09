@@ -1,14 +1,13 @@
 <?php
-$servername = "10.72.1.14";
-$username = "group2";
-$password = "6QOIHm";
+    $servername = "10.72.1.14";
+    $username = "group2";
+    $dbpass = "6QOIHm";
+    $dbname = "group2";
 
-// Create connection
-$conn = mysqli_connect($servername, $username, $password);
 
-// Check connection
-if (!$conn) {
-  die("Connection failed: " . mysqli_connect_error());
-}
-echo "Connected successfully";
-?>
+    $conn = new mysqli($servername, $username, $dbpass, $dbname);
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+        $success=FALSE;
+    }
+    ?>
