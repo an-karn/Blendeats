@@ -2,7 +2,7 @@
 session_start();
 // for clamv subdirectory issue
 // replace with  /~username/ for clamv upload
-$home = "/" ?>
+$home = "/~igiri/" ?>
 
 <!DOCTYPE html>
 <html lang="en">

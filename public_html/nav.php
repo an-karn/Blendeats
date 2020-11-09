@@ -1,7 +1,7 @@
 <?php 
 // for clamv subdirectory issue
 // replace with  /~username/ for clamv upload
-$home = "/" ?>
+$home = "/~igiri/" ?>
 
 
 
