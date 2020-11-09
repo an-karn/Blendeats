@@ -1,7 +1,7 @@
 <?php 
 // for clamv subdirectory issue
 // replace with  /~username/ for clamv upload
-$home = "/~igiri/" ?>
+$home = "/~aasingh/" ?>
 
 
 
@@ -35,6 +35,12 @@ $home = "/~igiri/" ?>
 <?php
 if(isset($_SESSION['user']))
 {
+    echo '<li class="dropdown">';
+    echo '<a href="#" class="dropdown-toggle" data-toggle="dropdown"><b style = "color:black;">'.$_SESSION['fname'].'<span class="caret"></span></b></a>';
+    echo '<ul class="dropdown-menu" role="menu">';
+    echo '<li class="inactive"><a href="user.php"><b style = color:black>Account</b></a></li>';
+    echo '<li class="inactive"><a href="login/logout.php"><b style = color:black>Log Out</b></a></li>';
+    echo '</ul>';
     echo "<a href='$home"."login/logout.php' class='btn btn-outline-light my-2 my-sm-0' > Logout </a> ";
     echo "<a href='$home"."login/signup.php' class='btn btn-outline-light my-2 my-sm-0' > Sign Up </a> ";
 

@@ -49,7 +49,6 @@ include("../conn.php");
                             $_SESSION['fname'] = $row['fname'];
                             $_SESSION['lname'] = $row['lname'];
                             $_SESSION['country'] = $row['country'];
-
                         } else {
                             $success = FALSE;
                             echo "Failed login";
