@@ -2,7 +2,7 @@
 
 Group Members: *Ishwor Giri* , *Aarshika Singh* and *Ankit Karn*
 Website link:- http://clabsql.clamv.jacobs-university.de/~igiri
-               http://clabsql.clamv.jacobs-university.de/~aasingh
+               http://clabsql.clamv.jacobs-university.de/~aasingh (Assignment 8 link)
          
 Login details (can only log in if the user details are for the admin):- Username1 - IG , Password1 - 147
                                                                         Username2 - AA , Password2 - 159
