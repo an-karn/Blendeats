@@ -1,7 +1,4 @@
-<?php
-$age_title = "Submit Page";
-require("../header.php");
-
+<?php session_start();
 include("../conn.php");
 ?>
 <body>
