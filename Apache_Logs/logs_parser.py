@@ -112,12 +112,45 @@ for url in paths:
                             for t in paths[url][remotehost][browser]['time']:
                                 print("       ------", t)
 
+with open('Page details.txt','w') as f:
+    for url in paths:
+        f.write("")
+        f.write("============================================\n")
 
-print("\n\n=============ERRORS============")
+        f.write(url)
+        for remotehost in paths[url]:
+            if remotehost == "count":
+                f.write(" > Count:" + str(paths[url]['count']) + "\n")
+            else:
+                f.write("")
 
+                f.write("---" + str(remotehost)+ "\n")
+                for browser in paths[url][remotehost]:
+                    if browser == "count":
+                        f.write(" > Count:" + str(paths[url][remotehost]['count']) + "\n")
+                    else:
+                        f.write("   ---" + str(browser) + "\n")
+                        for url3 in paths[url][remotehost][browser]:
+                            if url3 == "count":
+                                f.write(" > Count:" + str(paths[url][remotehost][browser]['count'])+"\n")
+                            elif url3 == 'time':
+                                for t in paths[url][remotehost][browser]['time']:
+                                    f.write("       ------" + str(t) + "\n")
+f.close()
+
+print("\n\n=============ERRORS============\n")
 for error in errors:
     print(f"\n\nURL:  {error['request_url']} \nRequested By:  {error['remote_host']} \nError code: {error['status']} \nTime received:  {error['time_received_isoformat']}")
 
+with open('Error_details.txt','w') as e:
+    e.write("\n\n=============ERRORS============\n")
+    for error in errors:
+        e.write("\n\nURL:" 
+        + str({error['request_url']}) +"\nRequested By:"
+        +  str({error['remote_host']})+ "\nError code:"
+        + str({error['status']}) + "\nTime received:" 
+        + str({error['time_received_isoformat']}))
+e.close()
 
 print("\n\n=============ALL URLs============")
 
