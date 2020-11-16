@@ -1,6 +1,10 @@
 import apache_log_parser  # https://github.com/rory/apache-log-parser
 
+import matplotlib.pyplot as plt
+import matplotlib
+
 from collections import Counter
+import datetime
 
 file = open('access_log', 'r')
 
@@ -31,7 +35,8 @@ browser = "request_header_user_agent__browser__family"
 
 urls = {}  # count
 browsers = {}  # count
-
+times={}
+ipcount={}
 
 paths = {}
 for d in data:  # go through each parsed data
@@ -46,6 +51,16 @@ for d in data:  # go through each parsed data
         browsers[d[browser]] += 1
     else:
         browsers[d[browser]] = 1
+
+    if(d[remotehost]) in ipcount:
+        ipcount[d[remotehost]] += 1
+    else:
+        ipcount[d[remotehost]] = 1
+
+    if(d['time_received_datetimeobj'].strftime("%d/%m/%Y")) in times:
+        times[d['time_received_datetimeobj'].strftime("%d/%m/%Y")] += 1
+    else:
+        times[d['time_received_datetimeobj'].strftime("%d/%m/%Y")] = 1
 
     # for each url full description
 
@@ -129,3 +144,64 @@ bc = Counter(browsers)
 high_bc = bc.most_common(3)
 for j in high_bc:
     print(j[0], " :", j[1], " ")
+
+
+
+plt.style.use('ggplot')
+
+
+
+# plot timeline vs views
+
+x= [datetime.datetime.strptime(key,'%d/%m/%Y') for key in times]
+
+
+# dates = matplotlib.dates.date2num(x)
+
+y=[times[key] for key in times]
+
+
+
+plt.plot(x, y,'o-')
+
+ax = plt.gca()
+
+#plt.xticks(y, x)
+
+formatter = matplotlib.dates.DateFormatter("%Y-%m-%d")
+ax.xaxis.set_major_formatter(formatter)
+
+plt.show()
+
+
+#plot ips 
+# x= [key for key in ipcount]
+# y=[ipcount[key] for key in ipcount]
+
+# x_pos = [i for i, _ in enumerate(x)]
+
+# plt.barh(x_pos, y, color='green',)
+# plt.ylabel("IPS")
+# plt.xlabel("IP Visits")
+# plt.title("IP Count")
+
+# plt.yticks(x_pos, x)
+# plt.show()
+
+
+
+
+# #plot url 
+# x= [key for key in urls]
+# y=[urls[key] for key in urls]
+
+
+# x_pos = [i for i, _ in enumerate(x)]
+
+# plt.barh(x_pos, y, color='green',)
+# plt.ylabel("Urls")
+# plt.xlabel("Url Visits")
+# plt.title("URL Count")
+
+# plt.yticks(x_pos, x)
+# plt.show()
