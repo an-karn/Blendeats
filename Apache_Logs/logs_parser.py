@@ -2,11 +2,13 @@ import apache_log_parser  # https://github.com/rory/apache-log-parser
 
 import matplotlib.pyplot as plt
 import matplotlib
-
+import matplotlib.dates as mdates
+from matplotlib.collections import PolyCollection
 from collections import Counter
 import datetime
+import numpy as np
 
-file = open('access_log', 'r')
+file = open('access_log.txt', 'r')
 
 
 errors = []
@@ -145,7 +147,73 @@ high_bc = bc.most_common(3)
 for j in high_bc:
     print(j[0], " :", j[1], " ")
 
+#timeline for pages
+name = [url for url in paths]
+dates = [datetime.datetime.strptime(key,'%d/%m/%Y') for key in times]
+levels = np.array([-5, 5, -3, 3, -1, 1])
+fig, ax = plt.subplots(figsize=(8, 5))
+# Create the base line
+start = min(dates)
+stop = max(dates)
+ax.plot((start, stop), (0, 0), 'k', alpha=.5)
 
+# Iterate through releases annotating each one
+for ii, (iname, idate) in enumerate(zip(name, dates)):
+    level = levels[ii % 6]
+    vert = 'top' if level < 0 else 'bottom'
+
+    ax.scatter(idate, 0, s=100, facecolor='w', edgecolor='k', zorder=9999)
+    # Plot a line up to the text
+    ax.plot((idate, idate), (0, level), c='r', alpha=.7)
+    # Give the text a faint background and align it properly
+    ax.text(idate, level, iname,
+            horizontalalignment='right', verticalalignment=vert, fontsize=14,
+            backgroundcolor=(1., 1., 1., .3))
+ax.set(title="Pages")
+# Set the xticks formatting
+# format xaxis with 3 month intervals
+ax.get_xaxis().set_major_locator(mdates.MonthLocator(interval=3))
+ax.get_xaxis().set_major_formatter(mdates.DateFormatter("%b %Y"))
+fig.autofmt_xdate()
+
+# Remove components for a cleaner look
+plt.setp((ax.get_yticklabels() + ax.get_yticklines() +
+          list(ax.spines.values())), visible=False)
+plt.show()
+
+#timeline for errors
+name = [errors['request_url'] for errors in errors]
+dates = [datetime.datetime.strptime(key,'%d/%m/%Y') for key in times]
+levels = np.array([-5, 5, -3, 3, -1, 1])
+fig, ax = plt.subplots(figsize=(8, 5))
+# Create the base line
+start = min(dates)
+stop = max(dates)
+ax.plot((start, stop), (0, 0), 'k', alpha=.5)
+
+# Iterate through releases annotating each one
+for ii, (iname, idate) in enumerate(zip(name, dates)):
+    level = levels[ii % 6]
+    vert = 'top' if level < 0 else 'bottom'
+
+    ax.scatter(idate, 0, s=100, facecolor='w', edgecolor='k', zorder=9999)
+    # Plot a line up to the text
+    ax.plot((idate, idate), (0, level), c='r', alpha=.7)
+    # Give the text a faint background and align it properly
+    ax.text(idate, level, iname,
+            horizontalalignment='right', verticalalignment=vert, fontsize=14,
+            backgroundcolor=(1., 1., 1., .3))
+ax.set(title="Errors")
+# Set the xticks formatting
+# format xaxis with 3 month intervals
+ax.get_xaxis().set_major_locator(mdates.MonthLocator(interval=3))
+ax.get_xaxis().set_major_formatter(mdates.DateFormatter("%b %Y"))
+fig.autofmt_xdate()
+
+# Remove components for a cleaner look
+plt.setp((ax.get_yticklabels() + ax.get_yticklines() +
+          list(ax.spines.values())), visible=False)
+plt.show()
 
 plt.style.use('ggplot')
 
@@ -175,33 +243,46 @@ plt.show()
 
 
 #plot ips 
-# x= [key for key in ipcount]
-# y=[ipcount[key] for key in ipcount]
+x= [key for key in ipcount]
+y=[ipcount[key] for key in ipcount]
 
-# x_pos = [i for i, _ in enumerate(x)]
+x_pos = [i for i, _ in enumerate(x)]
 
-# plt.barh(x_pos, y, color='green',)
-# plt.ylabel("IPS")
-# plt.xlabel("IP Visits")
-# plt.title("IP Count")
+plt.barh(x_pos, y, color='green',)
+plt.ylabel("IPS")
+plt.xlabel("IP Visits")
+plt.title("IP Count")
 
-# plt.yticks(x_pos, x)
-# plt.show()
-
-
+plt.yticks(x_pos, x)
+plt.show()
 
 
-# #plot url 
-# x= [key for key in urls]
-# y=[urls[key] for key in urls]
 
 
-# x_pos = [i for i, _ in enumerate(x)]
+#plot url 
+x= [key for key in urls]
+y=[urls[key] for key in urls]
 
-# plt.barh(x_pos, y, color='green',)
-# plt.ylabel("Urls")
-# plt.xlabel("Url Visits")
-# plt.title("URL Count")
 
-# plt.yticks(x_pos, x)
-# plt.show()
+x_pos = [i for i, _ in enumerate(x)]
+
+plt.barh(x_pos, y, color='green',)
+plt.ylabel("Urls")
+plt.xlabel("Url Visits")
+plt.title("URL Count")
+
+plt.yticks(x_pos, x)
+plt.show()
+
+#plot browsers
+x= [key for key in browsers]
+y= [browsers[key] for key in browsers]
+
+explode = (0, 0, 0, 0)
+
+fig1, ax1 = plt.subplots()
+ax1.pie(y, explode=explode, labels=x, autopct='%1.1f%%',
+        shadow=False, startangle=90)
+ax1.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
+
+plt.show()
