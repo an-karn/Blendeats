@@ -149,7 +149,7 @@ for j in high_bc:
 
 #timeline for pages
 name = [url for url in paths]
-dates = [datetime.datetime.strptime(key,'%d/%m/%Y') for key in times]
+dates = [datetime.datetime.strptime(url,'%d/%m/%Y') for url in times]
 levels = np.array([-5, 5, -3, 3, -1, 1])
 fig, ax = plt.subplots(figsize=(8, 5))
 # Create the base line
@@ -171,9 +171,7 @@ for ii, (iname, idate) in enumerate(zip(name, dates)):
             backgroundcolor=(1., 1., 1., .3))
 ax.set(title="Pages")
 # Set the xticks formatting
-# format xaxis with 3 month intervals
-ax.get_xaxis().set_major_locator(mdates.MonthLocator(interval=3))
-ax.get_xaxis().set_major_formatter(mdates.DateFormatter("%b %Y"))
+ax.get_xaxis().set_major_formatter(mdates.DateFormatter("%d/%m/%Y"))
 fig.autofmt_xdate()
 
 # Remove components for a cleaner look
@@ -183,7 +181,7 @@ plt.show()
 
 #timeline for errors
 name = [errors['request_url'] for errors in errors]
-dates = [datetime.datetime.strptime(key,'%d/%m/%Y') for key in times]
+dates = [datetime.datetime.strptime(errors,'%d/%m/%Y') for errors in times]
 levels = np.array([-5, 5, -3, 3, -1, 1])
 fig, ax = plt.subplots(figsize=(8, 5))
 # Create the base line
@@ -205,9 +203,7 @@ for ii, (iname, idate) in enumerate(zip(name, dates)):
             backgroundcolor=(1., 1., 1., .3))
 ax.set(title="Errors")
 # Set the xticks formatting
-# format xaxis with 3 month intervals
-ax.get_xaxis().set_major_locator(mdates.MonthLocator(interval=3))
-ax.get_xaxis().set_major_formatter(mdates.DateFormatter("%b %Y"))
+ax.get_xaxis().set_major_formatter(mdates.DateFormatter("%d/%m/ %Y"))
 fig.autofmt_xdate()
 
 # Remove components for a cleaner look
