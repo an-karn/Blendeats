@@ -1,6 +1,5 @@
 import apache_log_parser  # https://github.com/rory/apache-log-parser
 import os 
-import getpass
 
 import matplotlib.pyplot as plt
 import matplotlib
@@ -334,7 +333,7 @@ with PdfPages ('Statistics_access_log.pdf') as pdf:
     explode = (0, 0, 0, 0)
 
     fig1, ax1 = plt.subplots()
-    plt.title("IP Count")
+    plt.title("Browser Division")
 
     ax1.pie(y, explode=explode, labels=x, autopct='%1.1f%%',
             shadow=False, startangle=90)

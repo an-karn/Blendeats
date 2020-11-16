@@ -14,7 +14,7 @@ Simple Parsser application and printing it in terminal.
 
 
 ```
-    pip3 install * [matplotlib] 
+    pip3 install  matplotlib 
  ```
 
 
