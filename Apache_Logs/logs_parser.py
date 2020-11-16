@@ -1,10 +1,31 @@
 import apache_log_parser  # https://github.com/rory/apache-log-parser
+import os 
+import getpass
 
 import matplotlib.pyplot as plt
 import matplotlib
-
+import numpy as np
+import matplotlib.dates as mdates
 from collections import Counter
 import datetime
+
+from matplotlib.backends.backend_pdf import PdfPages
+
+
+
+try:
+    uname=input("Enter username for clamv = ")
+    #passwd=getpass.getpass("Enter password for clamv = ") #to hide the password while user is inputing
+    st1=' scp '+uname+'@10.72.1.14:/../../var/log/apache2/access_log ./'
+    os.system(st1)
+except Exception:
+    exit()
+
+#get log files in the same directory as that of the script file
+
+
+
+
 
 file = open('access_log', 'r')
 
@@ -33,19 +54,19 @@ remotehost = "remote_host"
 browser = "request_header_user_agent__browser__family"
 
 
-urls = {}  # count
+urls = {}  
 browsers = {}  # count
-times={}
 ipcount={}
+error_urls={} 
 
-paths = {}
+paths = {} #for tree 
 for d in data:  # go through each parsed data
 
     # for counting
     if(d[url] in urls):  # if url is already there
-        urls[d[url]] += 1
+        urls[d[url]].append(d)
     else:
-        urls[d[url]] = 1
+        urls[d[url]] = [d]
 
     if(d[browser]) in browsers:
         browsers[d[browser]] += 1
@@ -57,12 +78,15 @@ for d in data:  # go through each parsed data
     else:
         ipcount[d[remotehost]] = 1
 
-    if(d['time_received_datetimeobj'].strftime("%d/%m/%Y")) in times:
-        times[d['time_received_datetimeobj'].strftime("%d/%m/%Y")] += 1
-    else:
-        times[d['time_received_datetimeobj'].strftime("%d/%m/%Y")] = 1
+    if(int(d['status'])>=400):
+            # for counting
+        if(d[url] in error_urls):  # if url is already there
+            error_urls[d[url]].append(d)
+        else:
+            error_urls[d[url]] = [d]
 
-    # for each url full description
+    # all this code whill show tree of 
+            #url -> ip -> browser -> time 
 
     if(d[url] in paths):  # if url is already there
         if d[remotehost] in paths[d[url]]:  # if remote ip is there
@@ -120,7 +144,7 @@ for error in errors:
 print("\n\n=============ALL URLs============")
 
 for key in urls:
-    print(key, " ", urls[key])
+    print(key, " ", len(urls[key]))
 
 print("\n\n=============ALL BROWSERS ============")
 
@@ -128,80 +152,211 @@ for key in browsers:
     print(key, " ", browsers[key])
 
 
-print("\n\n=============TOP 3 URL ============")
+#diagrams 
 
-# top3 urls
-uc = Counter(urls)
-high_uc = uc.most_common(3)
-for i in high_uc:
-    print(i[0], " :", i[1], " ")
+with PdfPages ('Statistics_access_log.pdf') as pdf:
 
+    #for url count
+    plt.figure(figsize=(11,13))
+        #plot url 
+    x= [key for key in urls]
+    y=[len(urls[key]) for key in urls]
+    x_pos = [i for i, _ in enumerate(x)]
+    plt.barh(x_pos, y, color='green',)
+    plt.ylabel("Urls")
+    plt.xlabel("Url Visits")
+    plt.title("All URL Count")
+    plt.yticks(x_pos, x)
+    for i, v in enumerate(y):
+        plt.text(v + 0.5, i, str(v), color='black', fontweight='bold')
+    pdf.savefig(bbox_inches='tight')
+    plt.close()
 
-print("\n\n=============TOP 3 BROWSER ============")
+    
+    for url in urls: #for each url timeline 
+        times={}
 
-# top3 browser
-bc = Counter(browsers)
-high_bc = bc.most_common(3)
-for j in high_bc:
-    print(j[0], " :", j[1], " ")
+        plt.figure(figsize=(11, 9))
 
+        for d in urls[url]:
+            #print(d)
 
-
-plt.style.use('ggplot')
-
-
-
-# plot timeline vs views
-
-x= [datetime.datetime.strptime(key,'%d/%m/%Y') for key in times]
-
-
-# dates = matplotlib.dates.date2num(x)
-
-y=[times[key] for key in times]
-
-
-
-plt.plot(x, y,'o-')
-
-ax = plt.gca()
-
-#plt.xticks(y, x)
-
-formatter = matplotlib.dates.DateFormatter("%Y-%m-%d")
-ax.xaxis.set_major_formatter(formatter)
-
-plt.show()
+            if((d['time_received_datetimeobj'].strftime("%Y-%m-%d")) in times):
+                times[d['time_received_datetimeobj'].strftime("%Y-%m-%d")].append(d['remote_host'] + "\n" + d['request_header_user_agent__browser__family'] + "\n" + d['time_received_datetimeobj'].strftime("%H:%M:%S"))
+            else:
+                times[d['time_received_datetimeobj'].strftime("%Y-%m-%d")] = [d['remote_host'] + "\n" + d['request_header_user_agent__browser__family'] + "\n" + d['time_received_datetimeobj'].strftime("%H:%M:%S")]
 
 
-#plot ips 
-# x= [key for key in ipcount]
-# y=[ipcount[key] for key in ipcount]
+        tups =[]
 
-# x_pos = [i for i, _ in enumerate(x)]
+        for key1 in times:
+            for dt in times[key1]:
+                tups.append((key1,dt))
 
-# plt.barh(x_pos, y, color='green',)
-# plt.ylabel("IPS")
-# plt.xlabel("IP Visits")
-# plt.title("IP Count")
+        d1,names = zip(*tups)
 
-# plt.yticks(x_pos, x)
-# plt.show()
+        # print(tups)
+        # names=[times[key] for key in times]
 
+            # Convert date strings (e.g. 2014-10-18) to datetime
+        dates= [datetime.datetime.strptime(key,'%Y-%m-%d') for key in d1]
 
-
-
-# #plot url 
-# x= [key for key in urls]
-# y=[urls[key] for key in urls]
+        # Choose some nice levels
+        levels = np.tile([16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1],int(np.ceil(len(dates)/6)))[:len(dates)]
 
 
-# x_pos = [i for i, _ in enumerate(x)]
+        # Create figure and plot a stem plot with the date
+        fig, ax = plt.subplots(figsize=(11, 9), constrained_layout=True)
+        ax.set(title=url + " Count : "+ str(len(urls[url])))
 
-# plt.barh(x_pos, y, color='green',)
-# plt.ylabel("Urls")
-# plt.xlabel("Url Visits")
-# plt.title("URL Count")
+        markerline, stemline, baseline = ax.stem(dates, levels,
+                                                linefmt="C3-", basefmt="k-",
+                                                use_line_collection=True)
 
-# plt.yticks(x_pos, x)
-# plt.show()
+        plt.setp(markerline, mec="k", mfc="w", zorder=3)
+
+        # Shift the markers to the baseline by replacing the y-data by zeros.
+        markerline.set_ydata(np.zeros(len(dates)))
+
+        # annotate lines
+        vert = np.array(['top', 'bottom'])[(levels > 0).astype(int)]
+        for d, l, r, va in zip(dates, levels, names, vert):
+            ax.annotate(r, xy=(d, l), xytext=(-3, np.sign(l)*3),
+                        textcoords="offset points", va=va, ha="right", fontsize=7)
+
+        # format xaxis with 1 day intervals
+        ax.get_xaxis().set_major_locator(mdates.DayLocator(interval=1))
+        ax.get_xaxis().set_major_formatter(mdates.DateFormatter("%d %m %Y"))
+        plt.setp(ax.get_xticklabels(), rotation=0, ha="right")
+
+        # remove y axis and spines
+        ax.get_yaxis().set_visible(False)
+        for spine in ["left", "top", "right"]:
+            ax.spines[spine].set_visible(False)
+
+        ax.margins(y=0.1)
+        #plt.show()
+
+        pdf.savefig()
+        plt.close('all')
+
+        #for error_url count
+    plt.figure(figsize=(11,13))
+        #plot url 
+    x= [key for key in error_urls]
+    y=[len(error_urls[key]) for key in error_urls]
+    x_pos = [i for i, _ in enumerate(x)]
+    plt.barh(x_pos, y, color='green',)
+    plt.ylabel("ERROR URLs")
+    plt.xlabel(" Visits")
+    plt.title("All ERROR URL Count")
+    plt.yticks(x_pos, x)
+    for i, v in enumerate(y):
+        plt.text(v + 0.5, i, str(v), color='black', fontweight='bold')
+    pdf.savefig(bbox_inches='tight')
+    plt.close()
+
+
+    for url in error_urls: #for each url timeline 
+        times={}
+
+        plt.figure(figsize=(11, 9))
+
+        for d in error_urls[url]:
+            #print(d)
+
+            if((d['time_received_datetimeobj'].strftime("%Y-%m-%d")) in times):
+                times[d['time_received_datetimeobj'].strftime("%Y-%m-%d")].append(d['remote_host'] + "\n ERROR: " + d['status'] + "\n" + d['time_received_datetimeobj'].strftime("%H:%M:%S"))
+            else:
+                times[d['time_received_datetimeobj'].strftime("%Y-%m-%d")] = [d['remote_host'] + "\n ERROR: " + d['status']  + "\n" + d['time_received_datetimeobj'].strftime("%H:%M:%S")]
+
+
+        tups =[]
+
+        for key1 in times:
+            for dt in times[key1]:
+                tups.append((key1,dt))
+
+        d1,names = zip(*tups)
+
+        # print(tups)
+        # names=[times[key] for key in times]
+
+            # Convert date strings (e.g. 2014-10-18) to datetime
+        dates= [datetime.datetime.strptime(key,'%Y-%m-%d') for key in d1]
+
+        # Choose some nice levels
+        levels = np.tile([16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1],int(np.ceil(len(dates)/6)))[:len(dates)]
+
+
+        # Create figure and plot a stem plot with the date
+        fig, ax = plt.subplots(figsize=(11, 9), constrained_layout=True)
+        ax.set(title=url + " Count : "+ str(len(error_urls[url])))
+
+        markerline, stemline, baseline = ax.stem(dates, levels,
+                                                linefmt="C3-", basefmt="k-",
+                                                use_line_collection=True)
+
+        plt.setp(markerline, mec="k", mfc="w", zorder=3)
+
+        # Shift the markers to the baseline by replacing the y-data by zeros.
+        markerline.set_ydata(np.zeros(len(dates)))
+
+        # annotate lines
+        vert = np.array(['top', 'bottom'])[(levels > 0).astype(int)]
+        for d, l, r, va in zip(dates, levels, names, vert):
+            ax.annotate(r, xy=(d, l), xytext=(-3, np.sign(l)*3),
+                        textcoords="offset points", va=va, ha="right", fontsize=7)
+
+        # format xaxis with 1 day intervals
+        ax.get_xaxis().set_major_locator(mdates.DayLocator(interval=1))
+        ax.get_xaxis().set_major_formatter(mdates.DateFormatter("%d %m %Y"))
+        plt.setp(ax.get_xticklabels(), rotation=0, ha="right")
+
+        # remove y axis and spines
+        ax.get_yaxis().set_visible(False)
+        for spine in ["left", "top", "right"]:
+            ax.spines[spine].set_visible(False)
+
+        ax.margins(y=0.1)
+        #plt.show()
+
+        pdf.savefig()
+        plt.close('all')
+
+
+    plt.figure(figsize=(11, 9))
+
+        #plot browsers
+    x= [key for key in browsers]
+    y= [browsers[key] for key in browsers]
+
+    explode = (0, 0, 0, 0)
+
+    fig1, ax1 = plt.subplots()
+    plt.title("IP Count")
+
+    ax1.pie(y, explode=explode, labels=x, autopct='%1.1f%%',
+            shadow=False, startangle=90)
+    ax1.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
+
+    pdf.savefig()
+    plt.close('all')
+
+    # ipcount 
+    plt.figure(figsize=(11, 9))
+
+    x= [key for key in ipcount]
+    y=[ipcount[key] for key in ipcount]
+
+    x_pos = [i for i, _ in enumerate(x)]
+
+    plt.barh(x_pos, y, color='red',)
+    plt.ylabel("IPs")
+    plt.xlabel("IP Visits")
+    plt.title("IP Count")
+    plt.yticks(x_pos, x)
+    for i, v in enumerate(y):
+        plt.text(v + 0.5, i, str(v), color='black', fontweight='bold')
+    pdf.savefig()
+    plt.close('all')
