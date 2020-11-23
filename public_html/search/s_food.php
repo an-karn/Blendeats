@@ -1,5 +1,5 @@
 <?php
-$page_title = 'Search by Country - BlendEats';
+$page_title = 'Search by Food Name - BlendEats';
 include('../header.php');
 ?>
 
