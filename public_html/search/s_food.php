@@ -10,9 +10,9 @@ include('../header.php');
 
     <div class="main-content">
         <div class="container-fluid mb-5 mt-5 centerr">
-            <h3> Type Country Name to List all Users </h3>
+            <h3> Type Food Name to Search </h3>
 
-
+        <p> Try food name starting from b </p>
             <form action="/search/r_food.php" class=" row justify-content-md-center " method="GET">
                 <div class="form-group col col-lg-9 row justify-content-md-center">
 
@@ -34,12 +34,15 @@ include('../header.php');
 
     <script>
         $(document).ready(() => {
+            var tags = []
 
             var elem = $('#searchfood');
-
             elem.keyup(() => {
+                //reset data
+                tags = [];
+
                 var query = elem.val();
-                console.log(query)
+                //  console.log(query)
 
                 if (query != '') {
 
@@ -51,21 +54,22 @@ include('../header.php');
                         },
                         dataType: "json",
                         success: (data) => {
-                            availableTags = data;
-                            console.log(availableTags[0]);
-
-                            elem.autocomplete({
-                                source: availableTags
-                            });
+                            //update tags on every change
+                            tags = data;
                         }
-
-
                     })
 
                 }
+            });
 
-
-
+            //init
+            elem.autocomplete({
+                source: function(request, response) {
+                    var matcher = new RegExp("^" + $.ui.autocomplete.escapeRegex(request.term), "i");
+                    response($.grep(tags, function(item) {
+                        return matcher.test(item);
+                    }));
+                }
             });
 
         });

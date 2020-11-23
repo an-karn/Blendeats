@@ -11,6 +11,8 @@ include('../header.php');
      <div class="main-content">
           <div class="container-fluid mb-5 mt-5 centerr">
                <h3> Type Country Name to List all Users </h3>
+               <p> Try country name starting from i </p>
+
                <form action="r_country.php" class=" row justify-content-md-center " method="GET">
                     <div class="form-group col col-lg-9 row justify-content-md-center">
                          <input class="form-control col col-lg-5" name="country" id="countrysearch" type="search" placeholder="Country Name" aria-label="Search">
@@ -31,12 +33,16 @@ include('../header.php');
 
      <script>
           $(document).ready(() => {
+               var tags = []
 
                var elem = $('#countrysearch');
 
                elem.keyup(() => {
+                    //reset data
+                    tags = [];
+
                     var query = elem.val();
-                    console.log(query)
+                    //  console.log(query)
 
                     if (query != '') {
 
@@ -48,21 +54,22 @@ include('../header.php');
                               },
                               dataType: "json",
                               success: (data) => {
-                                   availableTags = data;
-                                   //console.log(availableTags[0]);
-
-                                   elem.autocomplete({
-                                        source: availableTags
-                                   });
+                                   //update tags on every change
+                                   tags = data;
                               }
-
-
                          })
 
                     }
+               });
 
-
-
+               //init
+               elem.autocomplete({
+                    source: (request, response) => {
+                         var matcher = new RegExp("^" + $.ui.autocomplete.escapeRegex(request.term), "i");
+                         response($.grep(tags, (item) => {
+                              return matcher.test(item);
+                         }));
+                    }
                });
 
           });

@@ -134,12 +134,15 @@ include('header.php');
 
     <script>
         $(document).ready(() => {
+            var tags = []
 
             var elem = $('#searchfood');
-
             elem.keyup(() => {
+                //reset data
+                tags = [];
+
                 var query = elem.val();
-                console.log(query)
+                //  console.log(query)
 
                 if (query != '') {
 
@@ -151,24 +154,23 @@ include('header.php');
                         },
                         dataType: "json",
                         success: (data) => {
-                            availableTags = data;
-                            console.log(availableTags[0]);
-
-                            elem.autocomplete({
-                                source: availableTags
-                            });
+                            //update tags on every change
+                            tags = data;
                         }
-
-
                     })
 
                 }
-
-
-
             });
 
-            elem.auto
+            //init
+            elem.autocomplete({
+                source: function(request, response) {
+                    var matcher = new RegExp("^" + $.ui.autocomplete.escapeRegex(request.term), "i");
+                    response($.grep(tags, function(item) {
+                        return matcher.test(item);
+                    }));
+                }
+            });
 
         });
     </script>
