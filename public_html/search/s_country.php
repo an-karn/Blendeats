@@ -37,7 +37,7 @@ include('../header.php');
 
                var elem = $('#countrysearch');
 
-               elem.keyup(() => {
+               elem.on('input',() => {
                     //reset data
                     tags = [];
 

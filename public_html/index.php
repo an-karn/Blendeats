@@ -137,7 +137,7 @@ include('header.php');
             var tags = []
 
             var elem = $('#searchfood');
-            elem.keyup(() => {
+            elem.on('input',() => {
                 //reset data
                 tags = [];
 
