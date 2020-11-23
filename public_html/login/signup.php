@@ -1,9 +1,15 @@
-<?php include("../header.php") ;
+<?php
+session_start();
+
 // Check, if username session is NOT set then this page will jump to login page
 if (isset($_SESSION['user'])) {
     header('Location: logout_msg.php');
 }
 ?>
+
+<?php include("../header.php") ;
+?>
+
 
 <body>
     <?php include('../nav.php') ?>

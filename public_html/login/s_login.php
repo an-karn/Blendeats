@@ -1,6 +1,7 @@
 <?php session_start();
-include("../conn.php");
+include("../header.php");
 ?>
+
 <body>
 
     <div class="container mt-5">

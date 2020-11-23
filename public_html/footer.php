@@ -2,7 +2,7 @@
 
 // for clamv subdirectory issue
 // replace with  /~username/ for clamv upload
-$home = "/~aasingh/" ?> 
+$home = "/~igiri/" ?> 
 
 
 <div class="footer">
@@ -79,5 +79,8 @@ $home = "/~aasingh/" ?>
 </div>
 
 
-<script src="<?php echo $home . 'assets/js/jq.js' ?>"></script>
+<script src="<?php echo $home . 'assets/js/jquery.js' ?>"></script>
+
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 <script src="<?php echo $home . 'assets/js/bootstrap.min.js' ?>"></script>

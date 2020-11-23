@@ -2,7 +2,7 @@
 $page_title = 'BlendEats';
 $pgDesc = 'BlendEats Homepage';
 $keyWords = 'food,culture,world,food project';
-include ('header.php');
+include('header.php');
 ?>
 
 
@@ -17,13 +17,22 @@ include ('header.php');
 
 
             <div class="links">
-                
+
             </div>
 
             <div class="searchbar">
-                <input type="text" class="searchTerm" placeholder="What are you looking for?">
-                <button type="submit" class="searchButton"> GO
-                </button>
+
+                <form action="/search/r_food.php" class=" row justify-content-md-center " method="GET">
+                    <div class="form-group col col-lg-9 row justify-content-md-center">
+
+                        <input type="text" id="searchfood" class="form-control col col-lg-7" name="foodname" placeholder="What are you looking for?">
+
+                        <button class="btn bg-def btn-dark col col-lg-1 " type="submit">GO</button>
+
+                    </div>
+
+                </form>
+
             </div>
 
         </div>
@@ -41,7 +50,7 @@ include ('header.php');
                 <span class="c-button">America</span>
                 <span class="c-button">Italy</span>
                 <span class="c-button">Germany</span>
-                <a class="c-button"  href="/search/s_country.php"> Browse Countries</></a>
+                <a class="c-button" href="/search/s_country.php"> Browse Countries</></a>
             </div>
         </div>
 
@@ -121,6 +130,48 @@ include ('header.php');
 
 
     <?php include("footer.php") ?>
+
+
+    <script>
+        $(document).ready(() => {
+
+            var elem = $('#searchfood');
+
+            elem.keyup(() => {
+                var query = elem.val();
+                console.log(query)
+
+                if (query != '') {
+
+                    $.ajax({
+                        url: "search/food_search_helper.php",
+                        method: "GET",
+                        data: {
+                            fname: query
+                        },
+                        dataType: "json",
+                        success: (data) => {
+                            availableTags = data;
+                            console.log(availableTags[0]);
+
+                            elem.autocomplete({
+                                source: availableTags
+                            });
+                        }
+
+
+                    })
+
+                }
+
+
+
+            });
+
+            elem.auto
+
+        });
+    </script>
 
 </body>
 

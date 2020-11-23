@@ -20,6 +20,8 @@
                         Filter By Expiry Date</a>
                         <a href="s_country.php" class="list-group-item mt-links list-group-item-action">
                         Search Country </a>
+                        <a href="s_food.php" class="list-group-item mt-links list-group-item-action">
+                        Search Food </a>
                 </div>
             </div>
 
