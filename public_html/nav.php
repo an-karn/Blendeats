@@ -23,6 +23,9 @@ $home = "/" ?>
             <li class="nav-item">
                 <a href="<?php echo $home.'search/' ?> " class="nav-link">Search</a>
             </li>
+            <li class="nav-item">
+                <a href="<?php echo $home.'viewmap.php' ?> " class="nav-link">View Map</a>
+            </li>
 
             <li class="nav-item">
                 <a href="mailto: aa.singh(at)jacobs-university.de" class="nav-link" target="_blank">Contact Us</a>
